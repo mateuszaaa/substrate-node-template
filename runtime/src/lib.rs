@@ -52,7 +52,7 @@ pub type Signature = MultiSignature;
 /// to the public key of our transaction signing scheme.
 pub type AccountId = <<Signature as Verify>::Signer as IdentifyAccount>::AccountId;
 
-/// The type for looking up accounts. We don't expect more than 4 billion of them, but you
+//ght/ The type for looking up accounts. We don't expect more than 4 billion of them, but you
 /// never know...
 pub type AccountIndex = u32;
 
@@ -262,6 +262,7 @@ impl pallet_sudo::Config for Runtime {
 /// Configure the template pallet in pallets/template.
 impl pallet_template::Config for Runtime {
 	type Event = Event;
+        type Currency = Balances;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
@@ -280,7 +281,7 @@ construct_runtime!(
 		TransactionPayment: pallet_transaction_payment::{Module, Storage},
 		Sudo: pallet_sudo::{Module, Call, Config<T>, Storage, Event<T>},
 		// Include the custom logic from the template pallet in the runtime.
-		TemplateModule: pallet_template::{Module, Call, Storage, Event<T>},
+		PrimeProblem: pallet_template::{Module, Call, Storage, Event<T>},
 	}
 );
 
